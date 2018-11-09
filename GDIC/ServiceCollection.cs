@@ -27,6 +27,8 @@ namespace GDIC
             services.Add(o.GetType(), new ServiceModel(o, ServiceType.Singeltone, o.GetType()));
         }
 
+        public Tservice GetService<Tservice>() => (Tservice)services[typeof(Tservice)].Get;
+
     }
     enum ServiceType
     {
@@ -36,6 +38,7 @@ namespace GDIC
     }
     class ServiceModel
     {
+        public object Get { get => Service; }
         readonly object Service;
         readonly ServiceType Type;
         readonly Type ServiceType;
